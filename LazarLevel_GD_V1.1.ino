@@ -1,50 +1,49 @@
-const int PR1 = 2;
-const int PR2 = 3;
-const int PR3 = 4;
-const int PR4 = 5;
-const int PR5 = 6;
+const int PR1 = 2;    //Photoresistor Variable
+const int PR2 = 3;    //Photoresistor Variable
+const int PR3 = 4;    //Photoresistor Variable
+const int PR4 = 5;    //Photoresistor Variable
+const int PR5 = 6;    //Photoresistor Variable
 
 const int numSensor = 5;
 
-const int actUp1 = 10;
-const int actDown1 = 11;
+const int actUp1 = 10;    //actuator up pin
+const int actDown1 = 11;  //actuator down pin
 
-int laserLevel1 = 0;  //, high0 = 0, low0 = 1023;
-int laserLevel2 = 0;  //, high1 = 0, low1 = 1023;
-int laserLevel3 = 0;  //, high2 = 0, low2 = 1023;
-int laserLevel4 = 0;  //, high3 = 0, low3 = 1023;
-int laserLevel5 = 0;  //, high4 = 0, low4 = 1023;
-
+int laserLevel1 = 0;  //variable declaration
+int laserLevel2 = 0;  //variable declaration
+int laserLevel3 = 0;  //variable declaration
+int laserLevel4 = 0;  //variable declaration
+int laserLevel5 = 0;  //variable declaration
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(9600); //Serial monitoring
   
-  pinMode(PR1, INPUT);
-  pinMode(PR2, INPUT);
-  pinMode(PR3, INPUT);
-  pinMode(PR4, INPUT);
-  pinMode(PR5, INPUT);
+  pinMode(PR1, INPUT);  //making PR1 an Input
+  pinMode(PR2, INPUT);  //making PR2 an Input
+  pinMode(PR3, INPUT);  //making PR3 an Input
+  pinMode(PR4, INPUT);  //making PR4 an Input
+  pinMode(PR5, INPUT);  //making PR5 an Input
   
-  pinMode(actUp1, OUTPUT);
-  pinMode(actDown1, OUTPUT);
+  pinMode(actUp1, OUTPUT);    //making actUp1 an Output
+  pinMode(actDown1, OUTPUT);  //making actDown1 an Output
 }
 
 
 void loop()
 {
-  laserLevel1 = digitalRead(PR1);
-  laserLevel2 = digitalRead(PR2);
-  laserLevel3 = digitalRead(PR3);
-  laserLevel4 = digitalRead(PR4);
-  laserLevel5 = digitalRead(PR5);
+  laserLevel1 = digitalRead(PR1); //Reading PR1 and making laserLevel equal to either 1 or 0
+  laserLevel2 = digitalRead(PR2); //Reading PR2 and making laserLeve2 equal to either 1 or 0
+  laserLevel3 = digitalRead(PR3); //Reading PR3 and making laserLeve3 equal to either 1 or 0
+  laserLevel4 = digitalRead(PR4); //Reading PR4 and making laserLeve4 equal to either 1 or 0
+  laserLevel5 = digitalRead(PR5); //Reading PR5 and making laserLeve5 equal to either 1 or 0
 
-  Serial.println(laserLevel1);
-  Serial.println(laserLevel2);
-  Serial.println(laserLevel3);
-  Serial.println(laserLevel4);
-  Serial.println(laserLevel5);
-  Serial.println("");
+  Serial.println(laserLevel1);  //Command line output
+  Serial.println(laserLevel2);  //Command line output
+  Serial.println(laserLevel3);  //Command line output
+  Serial.println(laserLevel4);  //Command line output
+  Serial.println(laserLevel5);  //Command line output
+  Serial.println("");           //Command line output
   
   if (laserLevel1 == 1){
     digitalWrite(actDown1, LOW);
@@ -85,38 +84,3 @@ void loop()
     digitalWrite(actUp1, HIGH);
     digitalWrite(actDown1, HIGH);
   }
-  
-  //delay(1000);
-  //autoTune();  // have the Arduino do the work for us!
-
-  //analogWrite(ledPin0, lightLevel0);
-  //analogWrite(ledPin1, lightLevel1);
-  //analogWrite(ledPin2, lightLevel2);
-
-}
-
-//void autoTune()
-//{
-//
-//  while(i < numSensor){
-//    
-//    if (lightLevel < low0){
-//    low0 = lightLevel0;
-//    }
-//    if (lightLevel0 > high0){
-//    high0 = lightLevel0;
-//    }
-//  }
-//
-//  lightLevel0 = map(lightLevel0, low0+30, high0-30, 0, 255);
-//  lightLevel0 = constrain(lightLevel0, 0, 255);
-//
-//  lightLevel1 = map(lightLevel1, low1+30, high1-30, 0, 255);
-//  lightLevel1 = constrain(lightLevel1, 0, 255);
-//
-//  lightLevel2 = map(lightLevel2, low2+30, high2-30, 0, 255);
-//  lightLevel2 = constrain(lightLevel2, 0, 255);
-//
-//  // Now we'll return to the main loop(), and send lightLevel
-//  // to the LED.
-//}
